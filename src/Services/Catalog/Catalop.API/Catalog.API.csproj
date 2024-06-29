@@ -17,7 +17,6 @@
 
   <ItemGroup>
 	  <PackageReference Include="Carter" Version="8.2.0" />
-    <Folder Include="Products\DeleteProduct\" />
   </ItemGroup>
 
   <ItemGroup>
