@@ -18,7 +18,7 @@ namespace Catalog.API.Products.UpdateProduct
             RuleFor(x => x.Price).GreaterThan(0).WithMessage("Producct price should be greather than 0");
         }
     }
-    public class UpdateProductHandler(ILogger<UpdateProductHandler> logger, IDocumentSession session) :
+    public class UpdateProductHandler( IDocumentSession session) :
       ICommandHandler<UpdateProductCommand, UpdateProductResult>
     {
         public async Task<UpdateProductResult> Handle(UpdateProductCommand commandReq, CancellationToken cancellationToken)

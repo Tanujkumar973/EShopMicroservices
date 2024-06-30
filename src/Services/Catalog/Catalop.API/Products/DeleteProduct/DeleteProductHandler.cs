@@ -13,7 +13,7 @@ namespace Catalog.API.Products.DeleteProduct
             RuleFor(x => x.Id).NotEmpty().WithMessage("product Id should not be empty");
         }
     }
-    public class DeleteProductCommandHandler(ILogger<DeleteProductCommandHandler> logger, IDocumentSession session)
+    public class DeleteProductCommandHandler( IDocumentSession session)
           : ICommandHandler<DeleteProductCommand, DeleteProductResult>
     {
         public async Task<DeleteProductResult> Handle(DeleteProductCommand command, CancellationToken cancellationToken)
