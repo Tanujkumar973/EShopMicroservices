@@ -5,6 +5,7 @@
 
 
 using BuildingBlocks.Behaviors;
+using HealthChecks.UI.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,9 @@ builder.Services.AddMarten(opts =>
     opts.Connection(builder.Configuration.GetConnectionString("Database"));
 }).UseLightweightSessions();
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
+
+builder.Services.AddHealthChecks().AddNpgSql(builder.Configuration.GetConnectionString("Database")!);
+
 // configure service dependencies
 var app = builder.Build();
 
@@ -33,4 +37,8 @@ app.UseExceptionHandler(options =>
 {
 
 });
+app.UseHealthChecks("/health", new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions()
+{
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+}); 
 app.Run();
