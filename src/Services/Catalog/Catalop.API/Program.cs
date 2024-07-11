@@ -5,6 +5,7 @@
 
 
 using BuildingBlocks.Behaviors;
+using Catalog.API.Data;
 using HealthChecks.UI.Client;
 
 var builder = WebApplication.CreateBuilder(args);
